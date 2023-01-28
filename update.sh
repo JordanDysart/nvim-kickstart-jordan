@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh 
 # Update the nvim config
 
 # Get the path to the nvim config
@@ -38,6 +38,7 @@ fi
 
 # Get the path to the current working directory
 CWD_PATH=$(pwd)
+echo "CWD_PATH: $CWD_PATH"
 
 # Check if the current working directory path is valid
 if [ -z "$CWD_PATH" ]; then
@@ -73,23 +74,19 @@ if [ ! -d "$KICKSTART_NVIM_PATH" ]; then
 fi
 
 # Check if the kickstart subdirectory path is a git repository
-if [ ! -d "$KICKSTART_NVIM_PATH/.git" ]; then
-    echo "Error: The current working directory path is not a git repository"
+if [ ! -f "$KICKSTART_NVIM_PATH/init.lua" ]; then
+    echo "Error: The current subdirectory init.lua is not a file"
     exit 1
 fi
-
-# Change Directory to KICKSTART_NVIM_PATH
-cd "$KICKSTART_NVIM_PATH" || exit 1
 
 # Update the nvim config submodule "kickstart.nvim"
 git pull
 
 # Copy init.lua into NVIM_CONFIG_PATH
-cp ./init.lua "$NVIM_KICKSTART_PATH" || exit 1
+cp "$KICKSTART_NVIM_PATH/init.lua" "$NVIM_KICKSTART_PATH" || exit 1
 
-# Change Directory back to CWD_PATH
-cd "$CWD_PATH" || exit 1
+cp "$CWD_PATH/init.lua" "$NVIM_CONFIG_PATH" || exit 1
 
-cp ./init.lua "$NVIM_CONFIG_PATH" || exit 1
+cp "$CWD_PATH/custom/init.lua" "$NVIM_CUSTOM_PATH" || exit 1
 
-cp ./custom/init.lua "$NVIM_CUSTOM_PATH" || exit 1
+echo "Done"
