@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh 
 # Update the nvim config
 
+git submodule init
+git submodule update
+git pull
+
 # Get the path to the nvim config
 NVIM_CONFIG_PATH="$HOME/.config/nvim/"
 
@@ -13,7 +17,10 @@ fi
 # Check if the nvim config path is a directory
 if [ ! -d "$NVIM_CONFIG_PATH" ]; then
     echo "Error: The nvim config path is not a directory"
+    echo "Warn: running mkdir -p $HOME/.config/nvim/"
+	mkdir -p $NVIM_CONFIG_PATH	
     exit 1
+else
 fi
 
 NVIM_KICKSTART_PATH="$NVIM_CONFIG_PATH/lua/kickstart"
