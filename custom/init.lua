@@ -1,9 +1,5 @@
 
 
-use { "catppuccin/nvim", as = "catppuccin" }
-
--- Harpoon install
-use { 'ThePrimeagen/harpoon', requires = { 'nvim-lua/plenary.nvim' } }
 vim.cmd [[colorscheme catppuccin]]
 -- Set border scroll off limit 
 vim.opt.scrolloff = 10
