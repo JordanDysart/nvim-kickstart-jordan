@@ -1,9 +1,13 @@
-
-
 vim.cmd [[colorscheme catppuccin]]
 -- Set border scroll off limit 
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = 'yes'
+
+-- Set tab width
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 
 require('catppuccin').setup ({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -69,3 +73,5 @@ vim.keymap.set('n', '<C-k>', function() require('harpoon.ui').nav_file(3)end, { 
 vim.keymap.set('n', '<C-l>', function() require('harpoon.ui').nav_file(4)end, { desc = 'Quick Nav Mark 4' })
 
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
+vim.keymap.set('n', '<C-Y>', '"+y<CR>', { desc = 'Yank to clipboard' })

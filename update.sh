@@ -96,4 +96,6 @@ cp "$CWD_PATH/init.lua" "$NVIM_CONFIG_PATH" || exit 1
 
 cp "$CWD_PATH/custom/init.lua" "$NVIM_CUSTOM_PATH" || exit 1
 
+cp "$CWD_PATH/custom/plugins.lua" "$NVIM_CUSTOM_PATH" || exit 1
+
 echo "Done"
